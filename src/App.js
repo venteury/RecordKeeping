@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header/Header";
+import Inputfield from "./components/InputField/Inputfield";
+import { useState } from "react";
+import Values from "./components/values/Values";
 
 function App() {
+  const [arr, setArr] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Inputfield setArrFunc={setArr} />
+      <div>
+      <div className="field">
+        <h2 className="text">Name</h2>
+        <h2 className="text">Email</h2>
+      </div>
+      </div>
+      {arr.map((element, index) => {
+        return (
+          <Values name={element.name} email={element.email} index={index} key={index} />
+        );
+      })}
     </div>
   );
 }
